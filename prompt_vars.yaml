@@ -1,0 +1,15 @@
+- name: prompt level variables
+  hosts: local
+  connection: local
+  vars_prompt:
+    - name: username
+      prompt: Please enter your username
+      private: false
+    
+    - name: password
+      prompt: please enter your password
+      private: true
+  tasks:
+    - name: using prompt vars
+      ansible.builtin.debug:
+        msg: "Hello welcome to TCS please find your {{ username }} and {{ password }}"

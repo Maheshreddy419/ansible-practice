@@ -1,0 +1,17 @@
+- name: copy the file to dest directory
+  hosts: local
+  connection: local
+  become: yes
+  tasks:
+    -name: copying file
+      ansible.builtin.copy:
+      src: /tmp/simplefile.txt
+      dest: /daws84s/devops/
+    
+    -name: checking if the file alreday exists
+      ansible.built.stat:
+        path: /daws84s/devops/
+      register: status
+    -name: add the file
+      msg: file is not available
+    when: register.stat.exists
